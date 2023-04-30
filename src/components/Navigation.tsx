@@ -21,19 +21,19 @@ const Navigation = () => {
   };
 
   const collapseItems = [
-    <Text weight="bold" color="rgba(89, 89, 89, 1)">
+    <Text key="1" weight="bold" color="rgba(89, 89, 89, 1)">
       Our Brands
     </Text>,
-    <Text weight="bold" color="rgba(89, 89, 89, 1)">
+    <Text key="2" weight="bold" color="rgba(89, 89, 89, 1)">
       Hiring Process
     </Text>,
-    <Text weight="bold" color="rgba(89, 89, 89, 1)">
+    <Text key="3" weight="bold" color="rgba(89, 89, 89, 1)">
       Students
     </Text>,
-    <Text weight="bold" color="rgba(89, 89, 89, 1)">
+    <Text key="4" weight="bold" color="rgba(89, 89, 89, 1)">
       Search All Jobs
     </Text>,
-    <Text weight="bold" color="rgba(89, 89, 89, 1)">
+    <Text key="5" weight="bold" color="rgba(89, 89, 89, 1)">
       Blog
     </Text>,
     <>
@@ -48,7 +48,12 @@ const Navigation = () => {
         <Navbar.Toggle showIn="xs" />
         <Link href="/">
           <Navbar.Brand>
-            <Image src="/nokair-icon2.webp" width="50" height="50" />
+            <Image
+              src="/nokair-icon2.webp"
+              width="50"
+              height="50"
+              alt="Logo of the company"
+            />
           </Navbar.Brand>
         </Link>
         <Navbar.Content>
