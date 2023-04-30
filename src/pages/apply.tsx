@@ -1,6 +1,16 @@
 import FormInput from "@/components/FormInput";
 import Select from "@/components/Select";
-import { Text, Grid, Container, Card, Button, Radio } from "@nextui-org/react";
+import {
+  Text,
+  Grid,
+  Container,
+  Card,
+  Button,
+  Radio,
+  Checkbox,
+  Textarea,
+  Spacer,
+} from "@nextui-org/react";
 import countries from "./../constant/countries.json";
 
 const Apply = () => {
@@ -64,19 +74,23 @@ const Apply = () => {
               <Grid xs={12} md={6}>
                 <FormInput
                   type="text"
-                  name="emailAddress"
+                  name="linkedInProfileLink"
                   label="Linked In Profile Link"
                 />
               </Grid>
               <Grid xs={12} md={6}>
                 <Select
                   label="Countries"
+                  name="country"
                   data={countries.map((country) => country.name)}
                   required
                 />
               </Grid>
             </Grid.Container>
-            <Text h2>PART 2: Questionnaire</Text>
+
+            <Grid xs={12}>
+              <Text h2>PART 2: Questionnaire</Text>
+            </Grid>
 
             <Grid.Container gap={2}>
               <Grid xs={12}>
@@ -169,8 +183,184 @@ const Apply = () => {
                   </Radio>
                 </Radio.Group>
               </Grid>
+              <Grid xs={12} md={6}>
+                <FormInput type="text" name="weight" label="Weight" required />
+              </Grid>
+              <Grid xs={12} md={6}>
+                <FormInput
+                  type="text"
+                  name="languages"
+                  label="What languages you comfortable speaking in? (Use comma to separate if more than one)"
+                  required
+                />
+              </Grid>
+              <Grid xs={12}>
+                <Radio.Group
+                  label="Are you willing to be relocated to our hubs outside Kuala Lumpur when needed?"
+                  name="willingRelocated"
+                  defaultValue="y"
+                  css={{
+                    "& label": {
+                      color: "$black",
+                      fontSize: "$sm",
+                    },
+                  }}
+                >
+                  <Radio value="y" size="xs">
+                    Yes
+                  </Radio>
+                  <Radio value="n" size="xs">
+                    No
+                  </Radio>
+                </Radio.Group>
+              </Grid>
+              <Grid xs={12}>
+                <Radio.Group
+                  label="Have you worked at AirAsia before?"
+                  name="workedBefore"
+                  defaultValue="y"
+                  css={{
+                    "& label": {
+                      color: "$black",
+                      fontSize: "$sm",
+                    },
+                  }}
+                >
+                  <Radio value="y" size="xs">
+                    Yes
+                  </Radio>
+                  <Radio value="n" size="xs">
+                    No
+                  </Radio>
+                </Radio.Group>
+              </Grid>
+              <Grid xs={12}>
+                <FormInput
+                  type="text"
+                  name="role"
+                  label="Allstars are always on the lookout for innovative ideas to digitally transform our guests&#39; experience, both from the airline and tech! With our evolving digital portfolio, what would you say is your role as a cabin crew to the brand?"
+                  required
+                />
+              </Grid>
+              <Grid xs={12}>
+                <Text h2>PART 3: Work Experience</Text>
+              </Grid>
+              <Grid xs={12} md={6}>
+                <FormInput
+                  type="text"
+                  name="jobTitle"
+                  label="Job Title"
+                  required
+                />
+              </Grid>
+              <Grid xs={12} md={6}>
+                <FormInput
+                  type="text"
+                  name="company"
+                  label="Company Name"
+                  required
+                />
+              </Grid>
+              <Grid xs={12} md={6}>
+                <FormInput type="date" name="workFrom" label="From" required />
+              </Grid>
+              <Grid xs={12} md={6}>
+                <FormInput type="date" name="workTo" label="To" required />
+              </Grid>
+
+              <Grid xs={12}>
+                <Checkbox name="stillWorking" defaultSelected size="xs">
+                  Do you work here currently?
+                </Checkbox>
+              </Grid>
+
+              <Grid xs={12}>
+                <Textarea
+                  name="location"
+                  label="Location"
+                  placeholder="Write your company address here..."
+                  bordered
+                  minRows={3}
+                  maxRows={10}
+                  css={{
+                    width: "100%",
+                  }}
+                />
+              </Grid>
+              <Grid xs={12}>
+                <Textarea
+                  name="roleDescription"
+                  label="Role Description"
+                  placeholder="Describe your role here..."
+                  bordered
+                  minRows={3}
+                  maxRows={20}
+                  css={{
+                    width: "100%",
+                  }}
+                />
+              </Grid>
+              <Container>
+                <Checkbox
+                  name="agree"
+                  defaultSelected
+                  size="xs"
+                  isRequired
+                  css={{
+                    display: "flex",
+                    direction: "column",
+                  }}
+                >
+                  <Grid.Container>
+                    <Grid>
+                      <Text>
+                        I acknowledge that I am applying for employment with
+                        AirAsia (“Company”), and hereby consents to the
+                        collection, use and processing of my personal
+                        information as described below for the purpose of
+                        recruitment.
+                      </Text>
+                    </Grid>
+                    <Grid>
+                      <Text>
+                        I understand that the Company holds certain personal
+                        information including name, home address, phone number,
+                        date of birth, NRIC no and nationality. The Company
+                        shall not process or disclose my Sensitive Personal
+                        Data, such as physical or mental health condition,
+                        political opinions, religious beliefs or other beliefs
+                        of a similar nature, the commission or alleged
+                        commission of any offence without my explicit consent
+                        and/or unless otherwise provided under respective local
+                        Data Protection Act.
+                      </Text>
+                    </Grid>
+                    <Grid>
+                      <Text>
+                        Equal employment opportunities are provided by the
+                        Company to all applicants and employees without regard
+                        to race, creed, religion, colour, age, national origin,
+                        sex, disability, medical condition, sexual orientation,
+                        gender identity or expression, genetic information,
+                        ancestry, marital status, military discharge status
+                        (excluding dishonourable discharge), veteran status,
+                        citizenship status, or any other legally protected
+                        status.
+                      </Text>
+                    </Grid>
+                    <Grid>
+                      <Text>
+                        The information provided will be kept confidential by
+                        the Company and will only be used in ways that are
+                        consistent with the law.
+                      </Text>
+                    </Grid>
+                  </Grid.Container>
+                </Checkbox>
+              </Container>
             </Grid.Container>
 
+            <Spacer y={1} />
             <Button auto flat type="submit">
               Submit
             </Button>
