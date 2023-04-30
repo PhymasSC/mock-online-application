@@ -1,6 +1,22 @@
-import '@/styles/globals.css'
-import type { AppProps } from 'next/app'
+//@ts-nocheck
+import Navigation from "@/components/Navigation";
+import { NextUIProvider, useSSR } from "@nextui-org/react";
+import { IconlyProvider } from "react-iconly";
+import Footer from "@/components/Footer";
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+function MyApp({ Component, pageProps }: { Component: any; pageProps: any }) {
+  const { isBrowser } = useSSR();
+  return (
+    isBrowser && (
+      <NextUIProvider>
+        <IconlyProvider set="curved" primaryColor="gold" secondaryColor="blue">
+          <Navigation />
+          <Component {...pageProps} />
+          <Footer />
+        </IconlyProvider>
+      </NextUIProvider>
+    )
+  );
 }
+
+export default MyApp;
