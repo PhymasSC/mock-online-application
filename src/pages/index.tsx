@@ -59,11 +59,7 @@ const Home = () => {
             airline. If you&#39;ve been thinking about a career in the skies,
             here are our core requirements to fly with the{" "}
             <Text span color="rgb(255,0,0,1)">
-              <Text del color="rgb(255,0,0,1)">
-                {" "}
-                AirAsia{" "}
-              </Text>
-              Cabin Crew
+              AirAsia Cabin Crew
             </Text>
             :
           </Text>

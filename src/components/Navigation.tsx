@@ -10,6 +10,7 @@ import {
 } from "@nextui-org/react";
 import { Star } from "react-iconly";
 import { useState } from "react";
+import Logo from "./Logo";
 
 const Navigation = () => {
   const [visible, setVisible] = useState(false);
@@ -48,12 +49,7 @@ const Navigation = () => {
         <Navbar.Toggle showIn="xs" />
         <Link href="/">
           <Navbar.Brand>
-            <Image
-              src="/nokair-icon2.webp"
-              width="50"
-              height="50"
-              alt="Logo of the company"
-            />
+            <Logo size={0.25} />
           </Navbar.Brand>
         </Link>
         <Navbar.Content>
@@ -74,9 +70,7 @@ const Navigation = () => {
               </Dropdown.Button>
               <Dropdown.Menu aria-label="Static Actions">
                 <Dropdown.Item key="new">Capital A</Dropdown.Item>
-                <Dropdown.Item key="copy">
-                  <Text del>airasia</Text> Super App
-                </Dropdown.Item>
+                <Dropdown.Item key="copy">airasia Super App</Dropdown.Item>
                 <Dropdown.Item key="edit">Teleport</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>

@@ -1,5 +1,6 @@
 import { Container, Text, Grid } from "@nextui-org/react";
 import Image from "next/image";
+import Logo from "./Logo";
 
 const Footer = () => {
   return (
@@ -32,12 +33,7 @@ const Footer = () => {
               gap: "1rem",
             }}
           >
-            <Image
-              src="/nokair-icon2.webp"
-              width="200"
-              height="50"
-              alt={"Logo of the company"}
-            />
+            <Logo size={0.25} color={"#FFF"} />
             <Text h4 color="#FFF" weight="black">
               FOLLOW US KEEP UPDATED!
             </Text>
@@ -85,6 +81,19 @@ const Footer = () => {
             </Text>
           </Grid>
         </Grid.Container>
+
+        <Text small color="hsl(0, 100%, 90%)">
+          Disclaimer: The following website is part of an educational
+          initiative, and is not officially affiliated with AirAsia or its
+          partners. The online job application process featured on this website
+          is a simulated experience, provided solely for educational purposes,
+          and does not reflect an actual job application process for AirAsia or
+          any other company. Any personal information that may be provided
+          during the simulation will not be collected or shared for any other
+          purpose than the simulated experience. If the owner of AirAsia or its
+          partners object to this website, they may contact me to request that
+          it be taken down.
+        </Text>
       </Container>
     </Container>
   );
