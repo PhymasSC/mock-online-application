@@ -188,7 +188,12 @@ const Apply = () => {
                 </Radio.Group>
               </Grid>
               <Grid xs={12} md={6}>
-                <FormInput type="text" name="weight" label="Weight" required />
+                <FormInput
+                  type="number"
+                  name="weight"
+                  label="Weight (in KG)"
+                  required
+                />
               </Grid>
               <Grid xs={12} md={6}>
                 <FormInput
