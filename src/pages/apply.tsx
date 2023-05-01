@@ -269,12 +269,6 @@ const Apply = () => {
               </Grid>
 
               <Grid xs={12}>
-                <Checkbox name="stillWorking" defaultSelected size="xs">
-                  Do you work here currently?
-                </Checkbox>
-              </Grid>
-
-              <Grid xs={12}>
                 <Textarea
                   name="location"
                   label="Location"
@@ -303,8 +297,12 @@ const Apply = () => {
               <Container>
                 <Checkbox
                   name="agree"
+                  id="agree"
+                  defaultChecked
                   defaultSelected
+                  aria-checked="true"
                   size="xs"
+                  value={"y"}
                   isRequired
                   css={{
                     display: "flex",
