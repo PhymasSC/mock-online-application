@@ -14,7 +14,7 @@ const theme = createTheme({
       primaryLightHover: "$red300",
       primaryLightActive: "$red400",
       primaryLightContrast: "$red600",
-      primary: "#de4a4a",
+      primary: "#F00",
       primaryBorder: "$red",
       primaryBorderHover: "$red600",
       primarySolidHover: "$red700",

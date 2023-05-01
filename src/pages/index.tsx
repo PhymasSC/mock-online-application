@@ -184,9 +184,7 @@ const Home = () => {
           </Text>
           <Row justify="flex-start" align="center">
             <Link href="/apply">
-              <Button flat color="default">
-                APPLY NOW
-              </Button>
+              <Button color="default">APPLY NOW</Button>
             </Link>
           </Row>
         </Text>
