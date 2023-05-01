@@ -1,7 +1,7 @@
 import { google } from 'googleapis';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { Router } from 'next/router';
-
+import fs from 'fs';
+import formidable from 'formidable';
 type SheetData = {
   fName: string;
   lName: string;
@@ -27,15 +27,33 @@ type SheetData = {
   location: string,
   roleDescription: string,
   agree: 'y' | 'n',
+  resume: Object
 }
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
 
   if (req.method !== 'POST') return res.status(405).json({ message: 'Method not allowed' })
 
-  const { fName, lName, phoneNumber, emailAddress, linkedInProfileLink, country, ageAboveEighteen, nationality, vaccinated, bmi, height, weight, languages, willingRelocated, workedBefore, role, jobTitle, company, workFrom, workTo, stillWorking, location, roleDescription, agree } = req.body as SheetData;
-  console.log(fName, lName)
-  console.log(req.body)
+  const promise = new Promise((resolve, reject) => {
+    const form = new formidable.IncomingForm();
+    form.parse(req, (err: any, fields: any, files: any) => {
+      if (err) reject(err);
+      resolve({ fields, files });
+    })
+
+  })
+  const data: {
+    info: SheetData,
+    files: any
+    //@ts-ignore
+  } = await promise.then(({ fields, files }) => {
+    const info = fields as SheetData
+    return { info, files }
+  })
+
+  const { fName, lName, phoneNumber, emailAddress, linkedInProfileLink, country, ageAboveEighteen, nationality, vaccinated, bmi, height, weight, languages, willingRelocated, workedBefore, role, jobTitle, company, workFrom, workTo, stillWorking, location, roleDescription, agree } = data.info as SheetData;
+
+  const fileContent = fs.createReadStream(data.files.resume.filepath);
 
   const auth = new google.auth.GoogleAuth({
     credentials: {
@@ -57,7 +75,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     version: 'v4',
   });
 
-  const response = await sheets.spreadsheets.values.append({
+  await sheets.spreadsheets.values.append({
     spreadsheetId: process.env?.GOOGLE_SHEET_ID || "",
     range: 'Sheet1!A2:X2',
     valueInputOption: 'USER_ENTERED',
@@ -66,8 +84,31 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     },
   });
 
+  // Upload pdf to google drive
+  const fileMetadata = {
+    name: `${fName} ${lName}-${data.files.resume.originalFilename}.pdf`,
+    parents: [process.env?.GOOGLE_DRIVE_FOLDER_ID || ""],
+  };
+  const media = {
+    mimeType: 'application/pdf',
+    body: fileContent,
+  };
+
+  await drive.files.create({
+    requestBody: fileMetadata,
+    media,
+    fields: 'id',
+  });
+
+
   res.redirect(302, `/thank-you?name=${fName + ' ' + lName}`)
 
 }
 
 export default handler;
+
+export const config = {
+  api: {
+    bodyParser: false, // Disallow body parsing, consume as stream
+  },
+};

@@ -37,7 +37,11 @@ const Apply = () => {
             overflow: "hidden",
           }}
         >
-          <form action="/api/online-application" method="post">
+          <form
+            action="/api/online-application"
+            method="post"
+            encType="multipart/form-data"
+          >
             <Grid.Container gap={2}>
               <Grid xs={12} md={6}>
                 <FormInput
@@ -267,7 +271,6 @@ const Apply = () => {
               <Grid xs={12} md={6}>
                 <FormInput type="date" name="workTo" label="To" required />
               </Grid>
-
               <Grid xs={12}>
                 <Textarea
                   name="location"
@@ -294,6 +297,14 @@ const Apply = () => {
                   }}
                 />
               </Grid>
+              <Text h5>
+                Please upload your resume in PDF format. File size should not be
+                over 10MB.
+              </Text>
+
+              <div>
+                <input name="resume" type="file" required />
+              </div>
               <Container>
                 <Checkbox
                   name="agree"
