@@ -182,15 +182,10 @@ const Home = () => {
             Dress Code: Office Attire & female a must to come in a knee-length
             skirt and be yourself!
           </Text>
-          <Text h3>GOOD LUCK & SEE YOU GUYS SOON!</Text>
           <Row justify="flex-start" align="center">
-            <Text h3 color="red">
-              APPLY NOW:{" "}
-            </Text>
-            <Spacer />
             <Link href="/apply">
               <Button flat color="default">
-                Apply
+                APPLY NOW
               </Button>
             </Link>
           </Row>
