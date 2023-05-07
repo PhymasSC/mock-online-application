@@ -110,5 +110,6 @@ export default handler;
 export const config = {
   api: {
     bodyParser: false, // Disallow body parsing, consume as stream
+    responseLimit: '100mb', // Max body size
   },
 };
